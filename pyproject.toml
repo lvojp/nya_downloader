@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "nya-downloader"
+version = "0.1.0"
+description = ""
+authors = ["Kunio Yoshikawa <920@wisdomtrees.net>"]
+readme = "README.md"
+packages = [{include = "nya_downloader"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+beautifulsoup4 = "^4.11.1"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

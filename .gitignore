@@ -1,0 +1,4 @@
+data/
+poetry.lock
+.venv/
+.idea/
