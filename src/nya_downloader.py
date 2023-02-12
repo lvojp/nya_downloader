@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 import urllib.request
 import urllib.error
@@ -84,6 +85,9 @@ if __name__ == '__main__':
 
     nd = NyaDownloader()
 
+    if url is None and file is None:
+        print('URL(-u) or file(-f) input is required.')
+        sys.exit()
     if file is None:
         nd.main(url, output)
     else:
@@ -91,4 +95,3 @@ if __name__ == '__main__':
             urls = f.read().split()
             for url in urls:
                 nd.main(url, output)
-                # print(url)
