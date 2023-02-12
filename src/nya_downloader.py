@@ -73,12 +73,22 @@ class NyaDownloader:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Download target')
-    parser.add_argument('-u', '--url', required=True, help='Enter a valid URL')
     parser.add_argument('-o', '--output', required=True, help='Output directory')
+    parser.add_argument('-u', '--url', required=False, help='Enter a valid URL')
+    parser.add_argument('-f', '--file', required=False, help='Line-wrapped list file')
 
     args = parser.parse_args()
     url = args.url
+    file = args.file
     output = args.output
 
     nd = NyaDownloader()
-    nd.main(url, output)
+
+    if file is None:
+        nd.main(url, output)
+    else:
+        with open(file, mode='r') as f:
+            urls = f.read().split()
+            for url in urls:
+                nd.main(url, output)
+                # print(url)
