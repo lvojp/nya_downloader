@@ -80,18 +80,22 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     url = args.url
-    file = args.file
+    file_path = args.file
     output = args.output
 
     nd = NyaDownloader()
 
-    if url is None and file is None:
+    if url is None and file_path is None:
         print('URL(-u) or file(-f) input is required.')
         sys.exit()
-    if file is None:
+    if file_path is None:
         nd.main(url, output)
     else:
-        with open(file, mode='r') as f:
+        with open(file_path, mode='r') as f:
+            file_name_with_ext = os.path.basename(file_path)
+            dir_name =os.path.splitext(file_name_with_ext)[0]
+            save_path = f"{output}/{dir_name}"
+            os.makedirs(save_path,exist_ok=True)
             urls = f.read().split()
             for url in urls:
-                nd.main(url, output)
+                nd.main(url, save_path)
